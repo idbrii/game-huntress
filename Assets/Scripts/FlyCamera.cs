@@ -1,7 +1,7 @@
 // Direct control (debug) camera script
 // Source: http://wiki.unity3d.com/index.php/FlyCam_Extended
 // This page was last modified on 18 August 2012, at 01:41.
-// Released under Creative Commons Attribution Share Alike.
+// License: Free as in speech, and free as in beer.
 using UnityEngine;
 using System.Collections;
 using TeamUtility.IO;
