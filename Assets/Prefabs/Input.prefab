@@ -239,6 +239,20 @@ MonoBehaviour:
       type: 0
       axis: 0
       joystick: 0
+    - name: DebugCam_Altitude
+      description: 
+      positive: 101
+      negative: 113
+      altPositive: 0
+      altNegative: 0
+      deadZone: 0
+      gravity: 1
+      sensitivity: 1
+      snap: 0
+      invert: 0
+      type: 2
+      axis: 0
+      joystick: 0
     isExpanded: 1
   - name: Windows_Gamepad
     axes:
@@ -424,7 +438,21 @@ MonoBehaviour:
       type: 3
       axis: 8
       joystick: 0
-    isExpanded: 0
+    - name: DebugCam_Altitude
+      description: 
+      positive: 0
+      negative: 0
+      altPositive: 0
+      altNegative: 0
+      deadZone: 0.2
+      gravity: 0
+      sensitivity: 1
+      snap: 0
+      invert: 0
+      type: 3
+      axis: 2
+      joystick: 0
+    isExpanded: 1
   - name: OSX_Gamepad
     axes:
     - name: Horizontal
