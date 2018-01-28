@@ -5,10 +5,10 @@
 using UnityEngine;
 using System.Collections;
 using TeamUtility.IO;
- 
+
 public class FlyCamera : MonoBehaviour
 {
- 
+
 	/*
 	EXTENDED FLYCAM
 		Desi Quintans (CowfaceGames.com), 17 August 2012.
@@ -31,44 +31,44 @@ public class FlyCamera : MonoBehaviour
 	public float normalMoveSpeed = 10;
 	public float slowMoveFactor = 0.25f;
 	public float fastMoveFactor = 3;
- 
+
 	private float rotationX = 0.0f;
 	private float rotationY = 0.0f;
- 
-	void Start ()
+
+	void Start()
 	{
 		Screen.lockCursor = true;
 	}
- 
-	void Update ()
+
+	void Update()
 	{
 		rotationX += InputManager.GetAxis("LookHorizontal") * cameraSensitivity * Time.deltaTime;
 		rotationY += InputManager.GetAxis("LookVertical") * cameraSensitivity * Time.deltaTime;
-		rotationY = Mathf.Clamp (rotationY, -90, 90);
- 
+		rotationY = Mathf.Clamp(rotationY, -90, 90);
+
 		transform.localRotation = Quaternion.AngleAxis(rotationX, Vector3.up);
 		transform.localRotation *= Quaternion.AngleAxis(rotationY, Vector3.left);
- 
-	 	if (InputManager.GetKey (KeyCode.LeftShift) || InputManager.GetKey (KeyCode.RightShift))
-	 	{
+
+		if (InputManager.GetKey(KeyCode.LeftShift) || InputManager.GetKey(KeyCode.RightShift))
+		{
 			transform.position += transform.forward * (normalMoveSpeed * fastMoveFactor) * InputManager.GetAxis("Vertical") * Time.deltaTime;
 			transform.position += transform.right * (normalMoveSpeed * fastMoveFactor) * InputManager.GetAxis("Horizontal") * Time.deltaTime;
-	 	}
-	 	else if (InputManager.GetKey (KeyCode.LeftControl) || InputManager.GetKey (KeyCode.RightControl))
-	 	{
+		}
+		else if (InputManager.GetKey(KeyCode.LeftControl) || InputManager.GetKey(KeyCode.RightControl))
+		{
 			transform.position += transform.forward * (normalMoveSpeed * slowMoveFactor) * InputManager.GetAxis("Vertical") * Time.deltaTime;
 			transform.position += transform.right * (normalMoveSpeed * slowMoveFactor) * InputManager.GetAxis("Horizontal") * Time.deltaTime;
-	 	}
-	 	else
-	 	{
-	 		transform.position += transform.forward * normalMoveSpeed * InputManager.GetAxis("Vertical") * Time.deltaTime;
+		}
+		else
+		{
+			transform.position += transform.forward * normalMoveSpeed * InputManager.GetAxis("Vertical") * Time.deltaTime;
 			transform.position += transform.right * normalMoveSpeed * InputManager.GetAxis("Horizontal") * Time.deltaTime;
-	 	}
- 
- 
+		}
+
+
 		transform.position += transform.up * climbSpeed * Time.deltaTime * InputManager.GetAxis("DebugCam_Altitude");
- 
-		if (InputManager.GetKeyDown (KeyCode.End))
+
+		if (InputManager.GetKeyDown(KeyCode.End))
 		{
 			Screen.lockCursor = (Screen.lockCursor == false) ? true : false;
 		}
