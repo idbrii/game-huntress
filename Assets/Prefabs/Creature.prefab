@@ -113,6 +113,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxSpeed: 1
+  MaxAcceleration: 20
 --- !u!114 &114524039948379930
 MonoBehaviour:
   m_ObjectHideFlags: 1

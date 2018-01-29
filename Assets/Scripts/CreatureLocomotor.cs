@@ -9,6 +9,9 @@ public class CreatureLocomotor : MonoBehaviour
     [Tooltip("Max speed we can reach.")]
     public float MaxSpeed = 1.0f;
 
+    [Tooltip("Max change in acceleration.")]
+    public float MaxAcceleration = 20.0f;
+
     Vector3 DesiredVelocity = Vector3.zero;
 
     Rigidbody body;
@@ -33,7 +36,8 @@ public class CreatureLocomotor : MonoBehaviour
 
     void FixedUpdate()
     {
-        body.velocity = DesiredVelocity;
+        var amount = Time.deltaTime * MaxAcceleration;
+        body.velocity = Vector3.MoveTowards(body.velocity, DesiredVelocity, amount);
     }
 
 }
