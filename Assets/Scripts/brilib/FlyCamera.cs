@@ -18,13 +18,13 @@ public class FlyCamera : MonoBehaviour
 		Free as in speech, and free as in beer.
  
 	FEATURES
-		WASD/Arrows:    Movement
-		          Q:    Climb
-		          E:    Drop
-                      Shift:    Move faster
-                    Control:    Move slower
-                        End:    Toggle cursor locking to screen (you can also press Ctrl+P to toggle play mode on and off).
-					  Space:	Turn look on and off
+		WASD/Arrows: Movement
+		          Q: Climb
+		          E: Drop
+			  Shift: Move faster
+			Control: Move slower
+				End: Toggle cursor locking to screen (you can also press Ctrl+P to toggle play mode on and off).
+			  Space: Turn look on and off
 	*/
  
 	public float cameraSensitivity = 90;
