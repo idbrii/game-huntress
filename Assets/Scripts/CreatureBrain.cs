@@ -21,6 +21,15 @@ public class CreatureBrain : MonoBehaviour, InterestingPoint.InterestingInteract
 	Transform TargetInterestPoint;
 	
 
+	void OnDrawGizmos() {
+		if (HasDestination())
+		{
+			Gizmos.color = Color.yellow;
+			var radius = 1.0f;
+			Gizmos.DrawSphere(TargetInterestPoint.position, radius);
+		}
+	}
+
 	void Start()
 	{
 		Dbg.Assert(!string.IsNullOrEmpty(TagToSeekOut), "Need a destination tag!");
@@ -36,14 +45,19 @@ public class CreatureBrain : MonoBehaviour, InterestingPoint.InterestingInteract
 
 	void PickNewInterestPoint()
 	{
+		var options = new List<Transform>();
 		var position = transform.position;
 		foreach (var point in StaticInterestingPoints)
 		{
 			if (Vector3.Distance(point.transform.position, position) > MinDistanceForNewTargetDestination)
 			{
-				TargetInterestPoint = point.transform;
-				return;
+				options.Add(point.transform);
 			}
+		}
+		TargetInterestPoint = null;
+		if (options.Count > 0)
+		{
+			TargetInterestPoint = options[Random.Range(0, options.Count)];
 		}
 	}
 
