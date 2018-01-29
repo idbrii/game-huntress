@@ -24,6 +24,7 @@ public class FlyCamera : MonoBehaviour
                       Shift:    Move faster
                     Control:    Move slower
                         End:    Toggle cursor locking to screen (you can also press Ctrl+P to toggle play mode on and off).
+					  Space:	Turn look on and off
 	*/
  
 	public float cameraSensitivity = 90;
@@ -31,23 +32,33 @@ public class FlyCamera : MonoBehaviour
 	public float normalMoveSpeed = 10;
 	public float slowMoveFactor = 0.25f;
 	public float fastMoveFactor = 3;
+	public bool isLookEnabled = true;
 
 	private float rotationX = 0.0f;
 	private float rotationY = 0.0f;
 
 	void Start()
 	{
-		Screen.lockCursor = true;
+		Screen.lockCursor = isLookEnabled;
 	}
 
 	void Update()
 	{
-		rotationX += InputManager.GetAxis("LookHorizontal") * cameraSensitivity * Time.deltaTime;
-		rotationY += InputManager.GetAxis("LookVertical") * cameraSensitivity * Time.deltaTime;
-		rotationY = Mathf.Clamp(rotationY, -90, 90);
+		if (InputManager.GetKeyDown(KeyCode.Space))
+		{
+			isLookEnabled = !isLookEnabled;
+			Screen.lockCursor = isLookEnabled;
+		}
 
-		transform.localRotation = Quaternion.AngleAxis(rotationX, Vector3.up);
-		transform.localRotation *= Quaternion.AngleAxis(rotationY, Vector3.left);
+		if (isLookEnabled)
+		{
+			rotationX += InputManager.GetAxis("LookHorizontal") * cameraSensitivity * Time.deltaTime;
+			rotationY += InputManager.GetAxis("LookVertical") * cameraSensitivity * Time.deltaTime;
+			rotationY = Mathf.Clamp(rotationY, -90, 90);
+
+			transform.localRotation = Quaternion.AngleAxis(rotationX, Vector3.up);
+			transform.localRotation *= Quaternion.AngleAxis(rotationY, Vector3.left);
+		}
 
 		if (InputManager.GetKey(KeyCode.LeftShift) || InputManager.GetKey(KeyCode.RightShift))
 		{
