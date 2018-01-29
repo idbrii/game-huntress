@@ -18,6 +18,13 @@ public class InterestingPoint : MonoBehaviour
         Callback = actor;
     }
 
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.blue;
+        var radius = 10.0f;
+        Gizmos.DrawSphere(transform.position, radius);
+    }
+
     void Awake() {
         // Init variables here
     }
