@@ -1,0 +1,44 @@
+Huntress
+
+* Concept
+half-finished idea of a singleplayer hunting game taking monster tracking
+ideas from Evolve.
+
+* Gameplay Loop
+** Player tracks creature.
+*** Tracking
+**** Creature leaves foot prints in track areas
+     Indication of direction of movement.
+**** Creature leaves droppings
+     A timer for how long since creature was here.
+**** Creature eats prey
+     A timer for how long since creature was here.
+     An indicator creature is stronger but slower for digesting time.
+**** Birds may be scared by creature
+     Long distance indication of location.
+**** Creature can damage flora
+     Rough indication that creature passed by.
+     Indication of creature's speed?
+** When located, sets a trap (tether harpoon).
+** Fight the creature while it's trapped.
+*** Combat
+**** Ranged weapons
+     Shoot weakspot for damage.
+**** Melee weapons
+     Support weapons to make weakspots more visible, stable, or larger.
+     Could also buff trap to increase its duration?
+**** Trade offs
+     Balance of applying damage, making it easy to apply damage, and not
+     taking damage.
+** When creature breaks free of trap, flee or be eaten.
+*** You don't stand a chance against untethered creature.
+*** You need to get out of range when trap is weakening.
+*** Within range, there's a good tell, and then 1/2 health damage.
+    Creature tosses you for damage?
+    Comes after you after toss, so now there's pressure to escape.
+*** When out of range, the creature decides to pursue or flee.
+** Hit creature with tracking darts to help find it again.
+*** Tracking darts
+    Darts last limited time, so best to hit creature as late as possible.
+    Safety vs utility tradeoff.
+** Loop begins again.
