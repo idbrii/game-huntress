@@ -1,3 +1,4 @@
+using UnityEngine.AI;
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,38 +7,28 @@ using System.Linq;
 public class CreatureLocomotor : MonoBehaviour
 {
 
-    [Tooltip("Max speed we can reach.")]
-    public float MaxSpeed = 1.0f;
-
-    [Tooltip("Max change in acceleration.")]
-    public float MaxAcceleration = 20.0f;
-
-    Vector3 DesiredVelocity = Vector3.zero;
-
     Rigidbody body;
     CreatureBrain brain;
+    NavMeshAgent agent;
 
     void Awake() {
         body = GetComponent<Rigidbody>();
         brain = GetComponent<CreatureBrain>();
+        agent = GetComponent<NavMeshAgent>();
     }
 
     void Update()
     {
-        if (brain.HasDestination())
+        var should_move = brain.HasDestination();
+        agent.isStopped = !should_move;
+        if (should_move)
         {
-            DesiredVelocity = MaxSpeed * (brain.TargetDestination - transform.position);
-        }
-        else
-        {
-            DesiredVelocity = Vector3.zero;
+            agent.destination = brain.TargetDestination; 
         }
     }
 
     void FixedUpdate()
     {
-        var amount = Time.deltaTime * MaxAcceleration;
-        body.velocity = Vector3.MoveTowards(body.velocity, DesiredVelocity, amount);
     }
 
 }
