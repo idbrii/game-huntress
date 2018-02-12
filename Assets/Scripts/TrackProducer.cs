@@ -6,8 +6,15 @@ using System.Linq;
 [RequireComponent(typeof(Collider))]
 public class TrackProducer : MonoBehaviour
 {
-    [Tooltip("Prefabs for visual represntationg of tracks.")]
-    public List<GameObject> TracksToGenerate;
+    [System.Serializable]
+    public struct TagToTrack
+    {
+        public string ForThisTag;
+        public GameObject TracksToGenerate;
+    }
+
+    [Tooltip("Prefabs for visual representation of tracks for each kind of actor.")]
+    public List<TagToTrack> TracksToGenerate;
 
     Collider trigger;
 
@@ -31,7 +38,14 @@ public class TrackProducer : MonoBehaviour
     {
         var creature = creature_collider.transform.root;
         if (creature) {
-            var tracks_prefab = TracksToGenerate[Random.Range(0, TracksToGenerate.Count-1)];
+            var obj = creature.gameObject;
+            var tracks_prefab = TracksToGenerate
+                .Where(pair => obj.CompareTag(pair.ForThisTag))
+                .Select(pair => pair.TracksToGenerate)
+                .First();
+            // Could randomly select from results intead.
+            // [Random.Range(0, TracksToGenerate.Count-1)];
+            Dbg.Assert(tracks_prefab != null, string.Format("Failed to find tracks for creature tag {0}", obj.tag));
             var tracks = GameObject.Instantiate(tracks_prefab, creature.position, creature.rotation);
         }
     }
